@@ -10,13 +10,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class Response {
 
-	
 	@Autowired
 	private SimpMessageSendingOperations messagingTemplate;
 
 	public void sendData(Data data) {
 
-		
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonString = null;
 		try {
@@ -24,12 +22,8 @@ public class Response {
 		} catch (JsonProcessingException e) {
 			System.out.println("exception");
 		}
-		messagingTemplate.convertAndSend("/topic/draw",jsonString);
+		messagingTemplate.convertAndSend("/topic/draw", jsonString);
 
 	}
-	
-	
-	
-	
-	
+
 }

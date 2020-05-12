@@ -16,8 +16,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-
 @Controller
 public class SocketController<T> {
 
@@ -25,43 +23,28 @@ public class SocketController<T> {
 	Data data;
 	@Autowired
 	Response response;
-	
-@MessageMapping("/data")
-@SendTo("/topic/draw")
-	public  void sendData(@RequestBody String paramMap) throws JsonMappingException, JsonProcessingException {
 
-	
-	
-//System.out.println(paramMap);
-//Convert JSON to POJO
+	@MessageMapping("/data")
+	@SendTo("/topic/draw")
+	public void sendData(@RequestBody String paramMap) throws JsonMappingException, JsonProcessingException {
 
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, T> map = new HashMap<>();
+		map = mapper.readValue(paramMap, Map.class);
 
+		data.setMousePressed(map.get("mousePressed"));
+		data.setIsDown(map.get("isDown"));
+		data.setLastX(map.get("lastX"));
+		data.setLastY(map.get("lastY"));
+		data.setX(map.get("x"));
+		data.setY(map.get("y"));
+		data.setClear(map.get("clear"));
+		data.setEraser(map.get("eraser"));
 
+		System.out.println(data);
 
+		response.sendData(data);
 
-ObjectMapper mapper = new ObjectMapper();
-Map<String,T> map=new HashMap<>();
-map=mapper.readValue(paramMap,Map.class);
-
-data.setMousePressed( map.get("mousePressed"));
-data.setIsDown(map.get("isDown"));
-data.setLastX(map.get("lastX"));
-data.setLastY(map.get("lastY"));
-data.setX(map.get("x"));
-data.setY(map.get("y"));
-data.setClear(map.get("clear"));
-data.setEraser(map.get("eraser"));
-
-System.out.println(data);
-
-response.sendData(data);
-
-
+	}
 
 }
-
-}
-
-		
-
-
