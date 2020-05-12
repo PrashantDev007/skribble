@@ -11,7 +11,8 @@ public class Data<T> {
 	private T lastX;
 	private T lastY;
 	private T mousePressed;
-	
+	private T eraser;
+	private T clear;
 	
 	
 	public Data() {}
@@ -20,7 +21,7 @@ public class Data<T> {
 
 
 
-	public Data(T x, T y, T isDown, T lastX, T lastY, T mousePressed) {
+	public Data(T x, T y, T isDown, T lastX, T lastY, T mousePressed,T eraser, T clear) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -28,6 +29,40 @@ public class Data<T> {
 		this.lastX = lastX;
 		this.lastY = lastY;
 		this.mousePressed = mousePressed;
+		this.clear=clear;
+		this.eraser=eraser;
+	}
+
+
+
+
+
+	public T getEraser() {
+		return eraser;
+	}
+
+
+
+
+
+	public void setEraser(T eraser) {
+		this.eraser = eraser;
+	}
+
+
+
+
+
+	public T getClear() {
+		return clear;
+	}
+
+
+
+
+
+	public void setClear(T clear) {
+		this.clear = clear;
 	}
 
 
@@ -106,20 +141,14 @@ public class Data<T> {
 
 
 
+
+
 	@Override
 	public String toString() {
 		return "Data [x=" + x + ", y=" + y + ", isDown=" + isDown + ", lastX=" + lastX + ", lastY=" + lastY
-				+ ", mousePressed=" + mousePressed + "]";
+				+ ", mousePressed=" + mousePressed + ", eraser=" + eraser + ", clear=" + clear + "]";
 	}
 
-	
-	
-
-
-
-
-	
-	
 	
 	
 }

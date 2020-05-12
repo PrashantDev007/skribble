@@ -49,8 +49,8 @@ data.setLastX(map.get("lastX"));
 data.setLastY(map.get("lastY"));
 data.setX(map.get("x"));
 data.setY(map.get("y"));
-
-
+data.setClear(map.get("clear"));
+data.setEraser(map.get("eraser"));
 
 System.out.println(data);
 
